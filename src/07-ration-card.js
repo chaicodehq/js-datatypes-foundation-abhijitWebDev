@@ -54,20 +54,49 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+  // checking if the registry is a valid object
+  if(typeof registry !== 'object' || registry == null || Array.isArray(registry)) return [];
+
+  // using object.keys method to get the family names
+  return Object.keys(registry);
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+  // checking if the registry is a valid object
+  if(typeof registry !== 'object' || registry == null || Array.isArray(registry)) return [];
+
+  // using object.values method to get all family objects
+  return Object.values(registry);
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+  // checking if the registry is a valid object
+  if(typeof registry !== 'object' || registry == null || Array.isArray(registry)) return [];
+
+  // using object.entries method to get all [id, family] pairs
+  return Object.entries(registry);
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+  // checking if the registry is a valid object and cardId is a string
+  if(typeof registry !== 'object' || registry == null || Array.isArray(registry) || typeof cardId !== 'string') return false;
+
+  // using hasOwnProperty method to check if the card exists
+  return registry.hasOwnProperty(cardId);
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+  // checking if the registry is a valid object and cardId is a string
+  if(typeof registry !== 'object' || registry == null || Array.isArray(registry) || typeof cardId !== 'string') return false;
+
+  // using delete operator to remove the ration card
+  if(registry.hasOwnProperty(cardId)) {
+    delete registry[cardId];
+    return true;
+  }
+  return false;
 }

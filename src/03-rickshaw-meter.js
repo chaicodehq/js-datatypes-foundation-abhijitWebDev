@@ -52,20 +52,58 @@
  */
 export function parseFare(fareString) {
   // Your code here
+  // converting to number
+  // if the data type is not string or it is empty
+  if (typeof fareString !== 'string' || fareString === '') return -1;
+  const result = parseFloat(fareString);
+  // checking if the result is a number
+  if (isNaN(result)) return -1;
+
+  return result;
 }
 
 export function roundFare(amount, decimalPlaces) {
   // Your code here
+  // checking if amount is not a number or decimalPlaces is a non neagtive integer then return ""
+  if(typeof amount !== 'number' || decimalPlaces < 0 || !Number.isInteger(decimalPlaces)) return "";
+  return amount.toFixed(decimalPlaces);
 }
 
 export function calculateSurge(baseFare, surgeMultiplier) {
   // Your code here
+  // check if baseFare or surgeMultiplier is not a positive number then return 0
+  if(typeof baseFare !== 'number' || typeof surgeMultiplier !== 'number' || baseFare <= 0 || surgeMultiplier <= 0) return 0;
+  return Math.ceil(baseFare * surgeMultiplier);
 }
 
 export function findCheapestAndCostliest(...fares) {
   // Your code here
+  // filetring out the fares which are numbers
+  const validFares = fares.filter(f => typeof f === 'number');
+
+  // if no valid no found return null
+  if(validFares.length === 0) return null;
+  // find the chepaest fare
+  const cheapest = Math.min(...validFares);
+  const costliest = Math.max(...validFares);
+
+  return {
+    cheapest,
+    costliest
+  }
 }
 
 export function getDistanceDifference(from, to) {
   // Your code here
+  // Convert to integers using parseInt
+  const fromKm = parseInt(from);
+  const toKm = parseInt(to);
+  
+  // Check if any value is NaN
+  if (isNaN(fromKm) || isNaN(toKm)) {
+    return -1;
+  }
+  
+  // Return absolute difference
+  return Math.abs(fromKm - toKm);
 }

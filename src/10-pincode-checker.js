@@ -59,20 +59,31 @@
  */
 export function getDataType(value) {
   // Your code here
+  // checking for null and array special cases
+  if(value === null) return "null";
+  if(Array.isArray(value) === true) return "array";
+  // using typeof for all other cases
+  return typeof value;
 }
 
 export function isValidParcelWeight(weight) {
   // Your code here
+  // using Number.isFinite to check if weight is a valid finite number and also checking if it's positive
+  return Number.isFinite(weight) && weight > 0;
 }
 
 export function isWholeNumber(value) {
   // Your code here
+  // using Number.isInteger to check if value is a whole number
+  return Number.isInteger(value);
 }
 
 export function isNotANumber(value) {
   // Your code here
+  return Number.isNaN(value);
 }
 
 export function isTruthy(value) {
   // Your code here
+  return Boolean(value);
 }

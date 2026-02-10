@@ -52,20 +52,46 @@
  */
 export function getItemNames(items) {
   // Your code here
+  // checking if the items is an array
+  if(!Array.isArray(items)) return [];
+
+  // using map method to get the names of items
+  return items.map(item => item.name);
 }
 
 export function getAffordableItems(items, maxPrice) {
   // Your code here
+  // checking if the items is an array and maxPrice is a number
+  if(!Array.isArray(items) || typeof maxPrice !== 'number') return [];
+
+  // using filter method to get the affordable items
+  return items.filter(item => item.price <= maxPrice);
 }
 
 export function calculateTotal(items) {
   // Your code here
+  // checking if the items is an array
+  if(!Array.isArray(items) || items.length === 0) return 0;
+
+  // using reduce method to calculate the total
+  return items.reduce((total, item) => total + (item.price * item.qty), 0);
 }
 
 export function sortByPrice(items, ascending) {
   // Your code here
+  // checking if the items is an array
+  if(!Array.isArray(items)) return [];
+  // using sort method to sort the items by price
+  const sortedItems = [...items].sort((a,b) => ascending ? a.price - b.price : b.price - a.price);
+  return sortedItems;
 }
 
 export function formatBill(items) {
   // Your code here
+  // checking if the items is an array
+  if(!Array.isArray(items) || items.length === 0) return "";
+
+  // using map method to format each item and join to create the bill
+  const formattedItems = items.map(item => `${item.name} x ${item.qty} = Rs.${item.price * item.qty}`);
+  return formattedItems.join("\n");
 }

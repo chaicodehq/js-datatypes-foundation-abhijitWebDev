@@ -53,20 +53,54 @@
  */
 export function writePostcard(sender, receiver, message) {
   // Your code here
+  // checking if sender, receiver and message are valid strings
+  if(typeof sender !== 'string' || typeof receiver !== 'string' || typeof message !== 'string') return "";
+  if(sender.trim() === '' || receiver.trim() === '' || message.trim() === '') return "";
+  // using template literals to create the formatted postcard
+  return `Priy ${receiver},\n\n${message}\n\nAapka/Aapki,\n${sender}`;
 }
 
 export function isValidPincode(code) {
   // Your code here
+  // checking if code is a valid string
+  if(typeof code !== 'string') return false;
+  
+  // checking if code starts with "0"
+  if(code.startsWith("0")) return false;
+  // checking if code has length of 6
+  if(code.length !== 6) return false;
+  // checking if all characters in code are digits
+  if(!/^\d+$/.test(code)) return false;
+
+  return true;
 }
 
 export function formatPostcardField(label, value, width) {
   // Your code here
+  // checking if label and value are valid strings
+  if(typeof label !== 'string' || typeof value !== 'string') return "";
+  
+  // using padEnd method to format the postcard field
+  const fieldWidth = width || 12;
+  return label.padEnd(fieldWidth) + ": " + value;
 }
 
 export function isFromState(address, stateCode) {
   // Your code here
+  // checking if address and stateCode are valid strings
+  if(typeof address !== 'string' || typeof stateCode !== 'string') return false;
+  
+  // using endsWith method to check if address ends with stateCode
+  return address.endsWith(stateCode);
+
 }
 
 export function countVowels(message) {
   // Your code here
+  // checking if message is a valid string
+  if(typeof message !== 'string') return 0;
+
+  // using match method to find all vowels in the message
+  const vowels = message.match(/[aeiouAEIOU]/g);
+  return vowels ? vowels.length : 0;
 }
